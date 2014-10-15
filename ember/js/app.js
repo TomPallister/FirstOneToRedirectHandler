@@ -26,6 +26,9 @@ App.ResetpasswordRoute = Ember.Route.extend({
     },
 
     setupController: function(controller, data) {
+
+      alert(navigator.platform);
+
       var iOS = navigator.platform.indexOf("iOS") != -1;
       var android = navigator.platform.indexOf("android") != -1;
 
