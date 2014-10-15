@@ -27,10 +27,8 @@ App.ResetpasswordRoute = Ember.Route.extend({
 
     setupController: function(controller, data) {
 
-      alert(navigator.userAgent);
-
-      var iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
-      var android = navigator.platform.indexOf("android") != -1;
+      var iOS = (navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
+      var android = (navigator.userAgent.match(/(Android|android|)/g) ? true : false );
 
       if(!iOS || !android){
         var isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
