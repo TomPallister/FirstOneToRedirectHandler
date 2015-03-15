@@ -26,12 +26,27 @@ App.ResetpasswordRoute = Ember.Route.extend({
     },
 
     setupController: function(controller, data) {
-      var isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-      if(isChrome){
-        var w = (window.parent)?window.parent:window
-        w.location.assign('firstoneto://resetpassword/' + data.aggregateId + '/' + data.resetPasswordId);
-      } else {
-        javascript:document.location = 'firstoneto://resetpassword/' + data.aggregateId + '/' + data.resetPasswordId;
+
+      var iOS = (navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
+      var android = (navigator.userAgent.match(/(Android|android)/g) ? true : false );
+
+      if(iOS || android){
+        var isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+        if(isChrome){
+          var w = (window.parent)?window.parent:window
+          w.location.assign('firstoneto://resetpassword/' + data.aggregateId + '/' + data.resetPasswordId);
+        } else {
+          javascript:document.location = 'firstoneto://resetpassword/' + data.aggregateId + '/' + data.resetPasswordId;
+        }
+      }
+      else {
+        var isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+        if(isChrome){
+          var w = (window.parent)?window.parent:window
+          w.location.assign('http://firstoneto.com/#/resetpassword/' + data.aggregateId + '/' + data.resetPasswordId);
+        } else {
+          javascript:document.location = 'http://firstoneto.com/#/resetpassword/' + data.aggregateId + '/' + data.resetPasswordId;
+        }
       }
     }
 });
